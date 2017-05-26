@@ -1,5 +1,6 @@
 from nltk.corpus import wordnet as wn
 import nltk
+#nltk.download()
 
 class NaturalLanguageObject:
     # All of the tokens that are usefull from the nltk parsing system
@@ -29,7 +30,6 @@ class NaturalLanguageObject:
     # equivalents such as (verb, noun, Verb phrase ect...)
     def getTokenisedScentence(self, inSentence):
         return nltk.pos_tag(nltk.word_tokenize(inSentence))
-
     # Convert each word into a number based on its tag
     # the Indentifiers are normalised between -1 and 1
     # this is the scale that proves most effective when networking
