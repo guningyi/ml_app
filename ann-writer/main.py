@@ -114,7 +114,8 @@ def Main():
         if(printToFile):
             f.write(initialInput + " ")
         else:
-            print(initialInput + " ", end="")
+            #print(initialInput + " ", end="")
+            print(initialInput + " ")
         initialInput = initialInput.split()
         # generate a sentence of genSize
         for index in range(0, genSize):
@@ -128,7 +129,8 @@ def Main():
             if(printToFile):
                 f.write(str(word) + " ")
             else:
-                print(str(word) + " ", end="")
+                #print(str(word) + " ", end="")
+                print(str(word) + " ")
             initialInput.append(word)
             # maintain a size of 'genSize'
             del initialInput[0]
