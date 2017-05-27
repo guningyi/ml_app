@@ -22,7 +22,7 @@ class NetworkTrainer:
         ConsoleOutput.printGreen("Loading text data from: (" + InputFile + ")")
         sentence = []
         # Convert to natural language object
-        for line in open(InputFile):
+        for line in open(InputFile,'r', encoding='UTF-8'):
             #line = line.lower()
             # remove completely
             line = line.replace('"', '')
