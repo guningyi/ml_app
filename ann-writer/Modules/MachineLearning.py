@@ -18,7 +18,7 @@ class NNSentenceStructure:
 
     # adds data to the training buffer
     def loadVectorsIntoNetwork(self, inNormalisedData, targetResult):
-        self.trainingData.extend(inNormalisedData)
+        self.trainingData.extend(inNormalisedData) # 在已经存在的列表尾部一次性的追加多个元素
         self.trainingDataResults.extend(targetResult)
 
     # Fits the network to all of the data passed in
@@ -59,8 +59,8 @@ class NNSentenceStructure:
         #self.clf = linear_model.SGDClassifier()
 
         # 26% accuracy
-        self.clf = KNeighborsClassifier()
-
+        self.clf = KNeighborsClassifier() #初始化的时候，为clf赋值 KNeighborsClassifier(),而这个KNeighborsClassifier是从sklearn.neighbors import进来的。
+                                          #实际上就是一个K近邻算法的构造器
         # Bad accuracy (1%) but makes sense
         #self.clf = svm.SVR(C=1.0, cache_size=200, coef0=0.0, degree=3, epsilon=0.1, gamma=0.0,
         #kernel='rbf', max_iter=-1, shrinking=True, tol=0.001, verbose=False)
