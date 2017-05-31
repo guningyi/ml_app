@@ -114,14 +114,13 @@ def Main():
         if(printToFile):
             f.write(initialInput + " ")
         else:
-            #print(initialInput + " ", end="")
-            print(initialInput + " ")
+            print(initialInput + " ", end="")
         initialInput = initialInput.split()
         # generate a sentence of genSize
         for index in range(0, genSize):
             nlo = NaturalLanguageObject(initialInput)
             # since nlo will always be the right size, we can use that variable
-            predToke = MLNetworkSS.getPrediction(nlo.sentenceNormalised)
+            predToke = MLNetworkSS.getPrediction([nlo.sentenceNormalised])
             nextToke = nlo.tokeniseNormals([predToke])
             # now we have the next toke in the sentence, convert that to word
             word = MLNetworkV.getPredictedWord(nlo.sentenceNormalised[-1], nextToke[0])
@@ -129,8 +128,7 @@ def Main():
             if(printToFile):
                 f.write(str(word) + " ")
             else:
-                #print(str(word) + " ", end="")
-                print(str(word) + " ")
+                print(str(word) + " ", end="")
             initialInput.append(word)
             # maintain a size of 'genSize'
             del initialInput[0]

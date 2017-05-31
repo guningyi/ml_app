@@ -5,6 +5,7 @@ import nltk
 class NaturalLanguageObject:
     # All of the tokens that are usefull from the nltk parsing system
     # 45 values
+
     _Identifiers = [',', '.', 'VBZ', 'VBP', 'VBN', 'VBG', 'VBD', 'VB', 'RP', 'RBS',
                     'RB', 'RBR', 'PDT', 'NNS', 'NNPS', 'NNP', 'NN', 'MD', 'SYM', 'JJS',
                     'JJR', 'JJ', 'WDT', 'WP', 'WP$', 'WRB', '$', ':', 'CC', 'CD', 'DT',
