@@ -29,11 +29,13 @@ class NaturalLanguageObject:
 
     # Searches throuhg the elements and gets the grammatical
     # equivalents such as (verb, noun, Verb phrase ect...)
+    # 先使用word_tokenize()对句子进行分词， 再使用pos_tag对词性进行标注.　
     def getTokenisedScentence(self, inSentence):
         return nltk.pos_tag(nltk.word_tokenize(inSentence))
     # Convert each word into a number based on its tag
     # the Indentifiers are normalised between -1 and 1
     # this is the scale that proves most effective when networking
+    # 正则化，将标识符正则化为－１，１之间的数字，以便于用网络处理。
     def normaliseSentenceTokens(self, inSentenceTokenList):
         normalisedSentence = []
         # unit product of all of the identifier
@@ -43,6 +45,7 @@ class NaturalLanguageObject:
                 if inSentenceTokenList[index] == tokenIdentifier:
                     # times unit by the index position
                     # Limits to 3 decimal places
+                    # round() 函数是返回一个浮点数的四舍五入值
                     tmpNormal = round(float(((index2+1) * self.normalisedUnit)), 10)
                     # Make sure we dont add too many vectors
                     # We need to vector size to be exactly the same size as the

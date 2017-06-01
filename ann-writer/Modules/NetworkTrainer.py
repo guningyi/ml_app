@@ -13,7 +13,7 @@ class NetworkTrainer:
     _TrainingSequenceV = []
     _TrainingTargetsV = []
     # Typical values
-    _TrainRangeSS = 3
+    _TrainRangeSS = 10
     _TrainRangeV = 1
     _nloTextData = None
 

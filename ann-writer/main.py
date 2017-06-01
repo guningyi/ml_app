@@ -25,7 +25,7 @@ from colorama import init, deinit
 from Modules.ConsoleOutput import ConsoleOutput
 
 # Amount of vectors per a train statement
-_TrainRangeSS = 3
+_TrainRangeSS = 10
 _TrainRangeV = 1
 
 def Main():
