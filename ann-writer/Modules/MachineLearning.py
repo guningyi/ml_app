@@ -13,8 +13,8 @@ _MAX_DECIMAL_PLACES = 10
 class NNSentenceStructure:
     trainingData = []
     trainingDataResults = []
+    # clf是分类器的缩写，classifier
     clf = None
-
 
     # adds data to the training buffer
     def loadVectorsIntoNetwork(self, inNormalisedData, targetResult):
@@ -41,6 +41,7 @@ class NNSentenceStructure:
         print(targetVector)
         print('\n')
         '''
+        #asarray()，功能是将输入数据转化为数组
         self.clf.fit(np.asarray(dataVector, dtype="float"), np.asarray(targetVector, dtype="float"))
 
     # gets a prediction from the network with the given input
@@ -149,9 +150,14 @@ class NNVocabulary:
     def __init__(self):
         # Create a sperate network for each identifier
         for index in range(0, len(NaturalLanguageObject._Identifiers)):
+            #针对NaturalLanguageObject._Identifiers中的每个分类，分别创建一个KNN分类器。
             nn = KNeighborsClassifier()
+            #将创建的KNN分类器存入到_Networks[]中
             self._Networks.append(nn)
         # Create th etraining sets for the multiple svm networks
+        # for _ in range() , 其中　_　就是个匿名变量，在for去遍历range()时，每个遍历到的值都会被放入到　_　中去。
+        # 而　[list() for _ in range(number)]这样的用法表示生成一个二维数组，里面有number个空的数组
+        # [[],[],[],[],...,[]]
         self.trainingData = [list() for _ in range(len(NaturalLanguageObject._Identifiers))]
         self.trainingDataResults = [list() for _ in range(len(NaturalLanguageObject._Identifiers))]
         self._Vocabulary = [list() for _ in range(len(NaturalLanguageObject._Identifiers))]

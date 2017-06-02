@@ -96,13 +96,15 @@ def Main():
         if(uTester == None):
             uTester = UnitTester(MLNetworkSS, MLNetworkV, _TrainRangeSS, _TrainRangeV)
         uTester.TestSentenceStructuring()
+        print("_isUnitTestingSS is true")
     # use console argument "-utv" to activate
     if(_isUnitTestingV):
         if(uTester == None):
             uTester = UnitTester(MLNetworkSS, MLNetworkV, _TrainRangeSS, _TrainRangeV)
         uTester.TestVocabulary()
-
+        print("_isUnitTestingV is true")
     if(_TestSentence != ""):
+        print("_TestSentence is true")
         printToFile = False
         f = None
         # user has specified output location
