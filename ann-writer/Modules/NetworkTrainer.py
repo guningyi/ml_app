@@ -87,6 +87,18 @@ class NetworkTrainer:
                         else:
                             # get the non-unique combinations (purely for training)
                             tempNonUniqueVocab[iIndex].append((prevTokenNormal, word))
+            # print('vocabulary size is:')
+            # print(len(vocabulary))
+            # print('vocabulary [3] size is')
+            # print(len(vocabulary[3]))
+            # print(vocabulary[3])
+            #
+            # print('tempNonUniqueVocab size is:')
+            # print(len(tempNonUniqueVocab))
+            # print('tempNonUniqueVocab [8] size is')
+            # print(len(tempNonUniqueVocab[8]))
+            # print(tempNonUniqueVocab[8])
+
             # Use unique sequences to generate normals
             for index, val in enumerate(vocabulary):
                 # Calculate the normals for each row

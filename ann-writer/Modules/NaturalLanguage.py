@@ -35,22 +35,25 @@ class NaturalLanguageObject:
     # Convert each word into a number based on its tag
     # the Indentifiers are normalised between -1 and 1
     # this is the scale that proves most effective when networking
-    # 正则化，将标识符正则化为－１，１之间的数字，以便于用网络处理。
+    # 标准化，将标识符标准化，以便于用网络处理。
     def normaliseSentenceTokens(self, inSentenceTokenList):
         normalisedSentence = []
         # unit product of all of the identifier
+        # 对于一个可迭代的（iterable）/可遍历的对象（如列表、字符串），enumerate将其组成一个索引序列，利用它可以同时获得索引和值.
         for index, token in enumerate(inSentenceTokenList):
             for index2, tokenIdentifier in enumerate(self._Identifiers):
                 # if token is equel to one of the identifiers
                 if inSentenceTokenList[index] == tokenIdentifier:
                     # times unit by the index position
                     # Limits to 3 decimal places
-                    # round() 函数是返回一个浮点数的四舍五入值
+                    # round() 函数是返回一个浮点数的四舍五入值,精度是小数点后的10位
                     tmpNormal = round(float(((index2+1) * self.normalisedUnit)), 10)
                     # Make sure we dont add too many vectors
                     # We need to vector size to be exactly the same size as the
                     # inputted sentence
                     if(len(normalisedSentence) < len(self.sentenceTokenList)):
+                        #print (len(normalisedSentence))
+                        #print (len(self.sentenceTokenList))
                         normalisedSentence.append(float(tmpNormal))
 
         return normalisedSentence

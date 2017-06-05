@@ -98,7 +98,13 @@ class NNVocabulary:
     # Fits the network to all of the data passed in
     def FitNetwork(self):
         countItems = 0
+        # print('size of trainingData[6] is:')
+        # print(len(self.trainingData[6]))
+        # print(self.trainingData[6])
         # train all of the networks at once
+        # trainingData[] 是二维数组,
+        # len(trainingData) 是　45
+        # trainingData[6]的size是2233
         for index, val in enumerate(self.trainingData):
             if(len(self.trainingData[index]) > 0):
                 self._fit(index, self.trainingData[index], self.trainingDataResults[index])
