@@ -5,17 +5,18 @@ import nltk
 class NaturalLanguageObject:
     # All of the tokens that are usefull from the nltk parsing system
     # 45 values
-
+    '''
     _Identifiers = [',', '.', 'VBZ', 'VBP', 'VBN', 'VBG', 'VBD', 'VB', 'RP', 'RBS',
                     'RB', 'RBR', 'PDT', 'NNS', 'NNPS', 'NNP', 'NN', 'MD', 'SYM', 'JJS',
                     'JJR', 'JJ', 'WDT', 'WP', 'WP$', 'WRB', '$', ':', 'CC', 'CD', 'DT',
                     'TO', 'EX', 'UH', 'FW', 'IN', 'POS', 'PRP', 'WDT', 'PRP$', "''", "``", "LS", "(", ")"]
     '''
-    _Identifiers = ['NN', 'NNP', 'NNS', 'NNPS', 'IN', ',', '.', 'DT', 'JJR', 'JJ', 'JJS', 'RP', 'RBS',
-                    'RB', 'RBR', 'PRP', 'PDT', 'VBZ', 'VBP', 'VBN', 'VBG', 'VBD', 'VB', 'MD', 'SYM',
-                    'WDT', 'WP', 'WP$', 'WRB', '$', ':', 'CC', 'CD',
-                    'TO', 'EX', 'UH', 'FW', 'POS', 'WDT', 'PRP$', "''", "``", "LS", "(", ")"]
-    '''
+    _Identifiers = ['n', 'np',  'ns', 'ni', 'nz',
+                    'm', 'q', 'mq' , 't' , 'f' ,  's',
+                    'v' , 'a' , 'd' , 'h' ,  'k' , 'i',
+                    'j' ,  'r' , 'c' , 'p' , 'u' , 'y' ,
+                    'e' , 'o' , 'g' , 'w' , 'x']
+
 
     sentenceList = None
     sentence = ""
