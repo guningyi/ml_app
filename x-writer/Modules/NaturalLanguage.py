@@ -1,11 +1,12 @@
-from nltk.corpus import wordnet as wn
+#from nltk.corpus import wordnet as wn
 import nltk
+from nltk.corpus import sinica_treebank as stb
 #nltk.download()
 
 class NaturalLanguageObject:
     # All of the tokens that are usefull from the nltk parsing system
     # 45 values
-    '''
+
     _Identifiers = [',', '.', 'VBZ', 'VBP', 'VBN', 'VBG', 'VBD', 'VB', 'RP', 'RBS',
                     'RB', 'RBR', 'PDT', 'NNS', 'NNPS', 'NNP', 'NN', 'MD', 'SYM', 'JJS',
                     'JJR', 'JJ', 'WDT', 'WP', 'WP$', 'WRB', '$', ':', 'CC', 'CD', 'DT',
@@ -16,7 +17,7 @@ class NaturalLanguageObject:
                     'v' , 'a' , 'd' , 'h' ,  'k' , 'i',
                     'j' ,  'r' , 'c' , 'p' , 'u' , 'y' ,
                     'e' , 'o' , 'g' , 'w' , 'x']
-
+    '''
 
     sentenceList = None
     sentence = ""
