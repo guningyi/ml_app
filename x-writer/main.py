@@ -20,7 +20,7 @@ from _thread import *
 from Modules.NaturalLanguage import NaturalLanguageObject
 from Modules.MachineLearning import NNSentenceStructure, NNVocabulary
 from Modules.NetworkTrainer import NetworkTrainer
-from Modules.UnitTesting import UnitTester
+#from Modules.UnitTesting import UnitTester
 from colorama import init, deinit
 from Modules.ConsoleOutput import ConsoleOutput
 
@@ -32,7 +32,7 @@ def Main():
     _isUnitTestingSS = False
     _isUnitTestingV = False
     _recursiveInput = False
-    _TrainingDataInputFile = "Datasets/HarryPotter(xxlarge).txt"
+    _TrainingDataInputFile = "Datasets/Sstt.utf8.txt"
     _TestSentence = ""
     _TestSequenceGenSize = 30
     _OutputFile = None
@@ -93,15 +93,15 @@ def Main():
     #testing
     uTester = None
     if(_isUnitTestingSS):
-        if(uTester == None):
-            uTester = UnitTester(MLNetworkSS, MLNetworkV, _TrainRangeSS, _TrainRangeV)
-        uTester.TestSentenceStructuring()
+        #if(uTester == None):
+            #uTester = UnitTester(MLNetworkSS, MLNetworkV, _TrainRangeSS, _TrainRangeV)
+        #uTester.TestSentenceStructuring()
         print("_isUnitTestingSS is true")
     # use console argument "-utv" to activate
     if(_isUnitTestingV):
-        if(uTester == None):
-            uTester = UnitTester(MLNetworkSS, MLNetworkV, _TrainRangeSS, _TrainRangeV)
-        uTester.TestVocabulary()
+        #if(uTester == None):
+            #uTester = UnitTester(MLNetworkSS, MLNetworkV, _TrainRangeSS, _TrainRangeV)
+        #uTester.TestVocabulary()
         print("_isUnitTestingV is true")
     if(_TestSentence != ""):
         print("_TestSentence is true")

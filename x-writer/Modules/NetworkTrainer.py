@@ -1,7 +1,9 @@
+"# -*- coding: utf-8 -*-"
 from Modules.NaturalLanguage import NaturalLanguageObject
 from Modules.MachineLearning import NNSentenceStructure
 from Modules.ConsoleOutput import ConsoleOutput
 from random import randint
+import thulac
 import re
 
 class NetworkTrainer:
@@ -16,9 +18,23 @@ class NetworkTrainer:
     _TrainRangeSS = 10
     _TrainRangeV = 1
     _nloTextData = None
+    thu = thulac.thulac(seg_only=True)
+    #OutputFile = "c:\\users\\eniiguu\\desktop\\cut.txt"
 
 
     def loadTextFromFile(self, InputFile):
+        ConsoleOutput.printGreen("Loading text data from: (" + InputFile + ")")
+        # Convert to natural language object
+        sentence = []
+        for line in open(InputFile, 'r', encoding='UTF-8'):
+            line = self.thu.cut(line, text=True)
+            #print(line)
+            sentence.extend(line.split())
+        ConsoleOutput.printGreen("Data load successful. WordCount: " + str(len(sentence)))
+        self._nloTextData = NaturalLanguageObject(sentence)
+
+
+    def loadTextFromFile_backup(self, InputFile):
         ConsoleOutput.printGreen("Loading text data from: (" + InputFile + ")")
         sentence = []
         # Convert to natural language object
@@ -27,10 +43,14 @@ class NetworkTrainer:
             # remove completely
             line = line.replace('"', '')
             line = line.replace("'", '')
-            # seperate punctuation from eachother so they have seprate tokens
-            line = re.sub( r'(.)([,.!?:;"()\'\"])', r'\1 \2', line)
+            # seperate punctuation from each other so they have seprate tokens
+            #line = re.sub( r'(.)([,.!?:;"()\'\"])', r'\1 \2', line)
             # seperate from both directions
-            line = re.sub( r'([,.!?:;"()\'\"])(.)', r'\1 \2', line)
+            #line = re.sub( r'([,.!?:;"()\'\"])(.)', r'\1 \2', line)
+
+            #sub函数第一个参数是要匹配的模式，第二个参数是要替换成的目标，第三个参数是要被正则匹配的源
+            line = re.sub(r'(.)([，。！？：“（）‘”“’])', r'\1 \2', line)
+            line = re.sub(r'([，。！？：；”（）“”‘’])(.)', r'\1 \2', line)
             sentence.extend(line.split())
         ConsoleOutput.printGreen("Data load successful. WordCount: " + str(len(sentence)))
         self._nloTextData = NaturalLanguageObject(sentence)
@@ -74,7 +94,9 @@ class NetworkTrainer:
             for wordIndex, x in enumerate(self._nloTextData.sentenceTokenList[self._TrainRangeV:]):
                 wordToken = self._nloTextData.sentenceTokenList[wordIndex][1]
                 word = self._nloTextData.sentenceTokenList[wordIndex][0]
-                prevTokenNormal = self._nloTextData.sentenceNormalised[wordIndex-1]
+                #print(wordIndex)
+                if(wordIndex < 11567):
+                    prevTokenNormal = self._nloTextData.sentenceNormalised[wordIndex-1]
                 # find which colum to insert into
                 for iIndex, iden in enumerate(NaturalLanguageObject._Identifiers):
                     # find colum

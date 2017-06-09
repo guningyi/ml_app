@@ -1,23 +1,21 @@
 #from nltk.corpus import wordnet as wn
 import nltk
 from nltk.corpus import sinica_treebank as stb
+import thulac
 #nltk.download()
 
 class NaturalLanguageObject:
     # All of the tokens that are usefull from the nltk parsing system
     # 45 values
-
+    '''
     _Identifiers = [',', '.', 'VBZ', 'VBP', 'VBN', 'VBG', 'VBD', 'VB', 'RP', 'RBS',
                     'RB', 'RBR', 'PDT', 'NNS', 'NNPS', 'NNP', 'NN', 'MD', 'SYM', 'JJS',
                     'JJR', 'JJ', 'WDT', 'WP', 'WP$', 'WRB', '$', ':', 'CC', 'CD', 'DT',
                     'TO', 'EX', 'UH', 'FW', 'IN', 'POS', 'PRP', 'WDT', 'PRP$', "''", "``", "LS", "(", ")"]
     '''
-    _Identifiers = ['n', 'np',  'ns', 'ni', 'nz',
-                    'm', 'q', 'mq' , 't' , 'f' ,  's',
-                    'v' , 'a' , 'd' , 'h' ,  'k' , 'i',
-                    'j' ,  'r' , 'c' , 'p' , 'u' , 'y' ,
-                    'e' , 'o' , 'g' , 'w' , 'x']
-    '''
+    _Identifiers = ['n', 'np',  'ns', 'ni', 'nz', 'm', 'q', 'mq', 't', 'f',
+                    's','v', 'a', 'd', 'h',  'k', 'i','j', 'r', 'c', 'p', 'u', 'y','e', 'o', 'g', 'w', 'x']
+
 
     sentenceList = None
     sentence = ""
@@ -28,12 +26,26 @@ class NaturalLanguageObject:
     # space between each seperated identifier
     _NormalisedDelta = 1
     normalisedUnit = 2/len(_Identifiers)
+    thu = thulac.thulac()
+
 
     # Searches throuhg the elements and gets the grammatical
     # equivalents such as (verb, noun, Verb phrase ect...)
     # 先使用word_tokenize()对句子进行分词， 再使用pos_tag对词性进行标注.　
     def getTokenisedScentence(self, inSentence):
-        return nltk.pos_tag(nltk.word_tokenize(inSentence))
+        #return nltk.pos_tag(nltk.word_tokenize(inSentence))
+        list = []
+        cut = self.thu.cut(inSentence, text=True)
+        temp = cut.split(' ')
+        for index, value in enumerate(temp):
+            tempList = []
+            tempList = value.split('_')
+            word = tempList[0]
+            tag = tempList[1]
+            tup = (word, tag)
+            list.append(tup)
+        #print(list)
+        return list
     # Convert each word into a number based on its tag
     # the Indentifiers are normalised between -1 and 1
     # this is the scale that proves most effective when networking
@@ -81,9 +93,11 @@ class NaturalLanguageObject:
         self.sentenceList = inSentence
         self.sentence = " ".join(str(x) for x in inSentence)
         self.sentenceTokenList = self.getTokenisedScentence(self.sentence)
+        #print(self.sentenceTokenList)
         self.sentenceTags = self.getTags(self.sentenceTokenList)
         self.sentenceNormalised = self.normaliseSentenceTokens(self.sentenceTags)
         self.sentenceSize = len(inSentence)
+
 
 
 '''
