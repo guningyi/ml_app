@@ -22,13 +22,24 @@ class NetworkTrainer:
     #OutputFile = "c:\\users\\eniiguu\\desktop\\cut.txt"
 
 
+    def delete(filepath):
+        f = open(filepath, 'a+')
+        fnew = open(filepath + '_new.txt', 'wb')  # 将结果存入新的文本中
+        for line in f.readlines():                # 对每一行先删除空格，\n等无用的字符，再检查此行是否长度为0
+            data = line.strip()
+            if len(data) != 0:
+                fnew.write(data)
+                fnew.write('\n')
+        f.close()
+        fnew.close()
+
+
     def loadTextFromFile(self, InputFile):
         ConsoleOutput.printGreen("Loading text data from: (" + InputFile + ")")
         # Convert to natural language object
         sentence = []
         for line in open(InputFile, 'r', encoding='UTF-8'):
-            line = self.thu.cut(line, text=True)
-            #print(line)
+            line = self.thu.cut(line.strip(), text=True)
             sentence.extend(line.split())
         ConsoleOutput.printGreen("Data load successful. WordCount: " + str(len(sentence)))
         self._nloTextData = NaturalLanguageObject(sentence)

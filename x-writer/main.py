@@ -111,16 +111,22 @@ def Main():
         if(_OutputFile != None):
             printToFile = True
             f = open(_OutputFile,'w')
-        genSize = _TestSequenceGenSize
+        genSize = _TestSequenceGenSize  #要生成的目标文章的大小
         initialInput = _TestSentence
         if(printToFile):
             f.write(initialInput + " ")
         else:
             print(initialInput + " ", end="")
-        initialInput = initialInput.split()
+        initialInput = initialInput.split()  # 输入的关键词分割
         # generate a sentence of genSize
         for index in range(0, genSize):
+            #print(initialInput)
             nlo = NaturalLanguageObject(initialInput)
+            #解决中文切词中存在的二意切词问题，为了让测试数据的维度能匹配训练数据的维度，要丢掉[('word', tag), ('word', tag),('word', tag),('word', tag),('word', tag)...]
+            #头部多余的部分tuple，否则KNN分类器会报错。
+            diff = len(nlo.sentenceNormalised) - _TrainRangeSS
+            if(diff > 0):
+                nlo.sentenceNormalised = nlo.sentenceNormalised[diff:]
             # since nlo will always be the right size, we can use that variable
             predToke = MLNetworkSS.getPrediction([nlo.sentenceNormalised])
             nextToke = nlo.tokeniseNormals([predToke])

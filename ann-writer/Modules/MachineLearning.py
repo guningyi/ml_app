@@ -46,6 +46,7 @@ class NNSentenceStructure:
 
     # gets a prediction from the network with the given input
     def getPrediction(self, inNormalisedData):
+        print(inNormalisedData)
         pred = self.clf.predict(inNormalisedData)
         return float(round(pred[0], _MAX_DECIMAL_PLACES))
 
